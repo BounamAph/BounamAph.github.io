@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bounam Aphayavong · Network & Security Engineering</title>
+<meta name="description" content="Bounam Aphayavong, network and security engineering student at ENSIIE (Paris-Saclay / IMT). Projects: secure radar networks at Thales, network automation, C++/Qt, CI/CD security, federated machine learning.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%231f3864'/><text x='16' y='22' font-size='15' font-family='Arial' font-weight='700' fill='white' text-anchor='middle'>BA</text></svg>">
+<style>
+  :root {
+    --bg: #f6f8fb; --surface: #ffffff; --text: #1d2733; --muted: #5b6b7f;
+    --accent: #1f3864; --accent-2: #2e6bc6; --line: #d9e1ec; --ok-bg: #eef6ee; --ok: #3b6d11; --chip: #eef2f8; --on-accent: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f1520; --surface: #172030; --text: #e6ebf2; --muted: #9aa8bb;
+      --accent: #8fb4ff; --accent-2: #8fb4ff; --line: #2a364a; --ok-bg: #1b2a1d; --ok: #8fd17a; --chip: #1f2a3d; --on-accent: #0f1520;
+    }
+  }
+  * { box-sizing: border-box; min-width: 0; }
+  body { overflow-wrap: anywhere; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif; }
+  a { color: var(--accent-2); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+  nav { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 56px; gap: 12px; }
+  nav .brand { font-weight: 700; color: var(--accent); }
+  nav .links { display: flex; gap: 18px; font-size: 15px; }
+  nav .links a { color: var(--muted); }
+  header.hero { padding: 64px 0 40px; }
+  .hero h1 { font-size: clamp(32px, 5vw, 48px); line-height: 1.1; margin: 0 0 10px; color: var(--accent); }
+  .hero .role { font-size: clamp(17px, 2.3vw, 21px); color: var(--text); margin: 0 0 14px; }
+  .hero p.lead { color: var(--muted); max-width: 680px; margin: 0 0 22px; }
+  .btns { display: flex; flex-wrap: wrap; gap: 10px; }
+  .btn { display: inline-block; padding: 9px 16px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--text); font-weight: 600; font-size: 15px; }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 34px 0 0; }
+  .stat { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
+  .stat b { display: block; font-size: 22px; color: var(--accent); }
+  .stat span { font-size: 14px; color: var(--muted); }
+  section { padding: 34px 0; }
+  h2 { font-size: 26px; margin: 0 0 18px; color: var(--accent); }
+  .xp { display: grid; gap: 14px; }
+  .xp-item { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; }
+  .xp-item .top { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px; }
+  .xp-item h3 { margin: 0; font-size: 18px; }
+  .xp-item .when { color: var(--muted); font-size: 14px; }
+  .xp-item ul { margin: 8px 0 0 18px; padding: 0; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px; margin-bottom: 16px; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 18px; align-items: center; }
+  .card h3 { margin: 0 0 4px; font-size: 19px; }
+  .meta { color: var(--muted); font-size: 14px; margin-bottom: 8px; }
+  .card ul { margin: 0 0 0 18px; padding: 0; }
+  .card li { margin-bottom: 4px; }
+  .res { margin-top: 10px; background: var(--ok-bg); border-left: 3px solid var(--ok); padding: 6px 10px; border-radius: 4px; font-size: 15px; }
+  .fig { background: #ffffff; border: 1px solid var(--line); border-radius: 10px; padding: 8px; }
+  .fig svg, .fig img { width: 100%; height: auto; display: block; }
+  .fig .cap { font-size: 12px; color: #6b7a8c; text-align: center; margin-top: 4px; }
+  .links-row { margin-top: 8px; font-size: 14px; font-weight: 600; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { background: var(--chip); border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; font-size: 14px; }
+  .skills { display: grid; gap: 14px; }
+  .skills h3 { margin: 0 0 6px; font-size: 16px; color: var(--muted); font-weight: 600; }
+  .edu { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  footer { border-top: 1px solid var(--line); padding: 26px 0 40px; color: var(--muted); font-size: 14px; }
+  @media (max-width: 760px) {
+    nav .links { display: none; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .card { grid-template-columns: 1fr; }
+    .edu { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <a class="brand" href="#top">Bounam Aphayavong</a>
+  <div class="links"><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#education">Education</a><a href="#contact">Contact</a></div>
+</div></nav>
+
+<header class="hero" id="top"><div class="wrap">
+  <h1>Bounam Aphayavong</h1>
+  <p class="role">Network &amp; security engineering student · ENSIIE (Université Paris-Saclay / Institut Mines-Télécom)</p>
+  <p class="lead">I design, secure and automate networks: encrypted radar networks at Thales, security reporting for thousands of devices, and my own tools in Python and C++. I am looking for a <b>6-month end-of-studies internship from January 2027</b> in network or security engineering, with a strong interest in aerospace and defence.</p>
+  <div class="btns">
+    <a class="btn primary" href="https://github.com/BounamAph" target="_blank" rel="noopener">GitHub</a>
+    <a class="btn" href="https://www.linkedin.com/in/bounam-aphayavong" target="_blank" rel="noopener">LinkedIn</a>
+    <a class="btn" href="#contact">Contact</a>
+  </div>
+  <div class="stats">
+    <div class="stat"><b>5 sites</b><span>radar multicast carried over IPsec (Thales)</span></div>
+    <div class="stat"><b>hours → 30 s</b><span>security report for 7,200 network devices (Thales)</span></div>
+    <div class="stat"><b>17 → 0</b><span>CIS misconfigurations, blocked in CI/CD</span></div>
+    <div class="stat"><b>2,200+</b><span>concerts collected nightly by my own pipeline</span></div>
+  </div>
+</div></header>
+
+<section id="experience"><div class="wrap">
+  <h2>Experience</h2>
+  <div class="xp">
+    <div class="xp-item">
+      <div class="top"><h3>Thales Global Services · Network &amp; security automation intern</h3><span class="when">May to Aug 2025 · Vélizy, France</span></div>
+      <ul>
+        <li>Cut the monthly security report for <b>7,200 network devices</b> from several hours to <b>30 seconds</b> by automating it in Python on top of the network inventory API (IP Fabric).</li>
+        <li>Built a risk indicator based on the real CVEs of 876 Cisco devices (Cisco API, CVSS), <b>adopted by management</b>.</li>
+        <li>Projected obsolescence over 6 years, used as the basis for migration and fleet-renewal planning.</li>
+      </ul>
+    </div>
+    <div class="xp-item">
+      <div class="top"><h3>Thales LAS · Network &amp; security engineering intern</h3><span class="when">May to Aug 2024 · Massy, France</span></div>
+      <ul>
+        <li>Delivered a resilient, encrypted lab network for a defence customer's radar sites: IPsec between FortiGates, automatic failover to SATCOM and fall-back.</li>
+        <li>Carried radar multicast over IPsec between 5 sites (VTI, PIM), with PIM neighbours restricted by ACLs, proven by test.</li>
+        <li>Delivered a mobile secure remote-access kit (IKEv2 dial-up IPsec); wrote 4 technical documents reused by the team.</li>
+      </ul>
+    </div>
+  </div>
+</div></section>
+
+<section id="projects"><div class="wrap">
+  <h2>Projects</h2>
+
+  <div class="card">
+    <div>
+      <h3>Resilient, secure radar network (Thales LAS, 2024)</h3>
+      <div class="meta">Internship · FortiGate 100F (FortiOS 7.4), FortiWiFi 80F, Cisco 3750X, Wireshark, Visio</div>
+      <ul>
+        <li><b>Problem:</b> a defence customer's radar sites talk over its own WAN; Thales SATCOM must take over only if the WAN fails, with traffic always encrypted.</li>
+        <li><b>Built:</b> IPsec site-to-site tunnels on loopback endpoints; WAN preferred by administrative distance; link monitors (800 ms probes) for automatic failover and fall-back.</li>
+        <li><b>Multicast:</b> radar data between 5 sites carried inside IPsec via VTIs and PIM; PIM neighbours restricted by ACLs.</li>
+      </ul>
+      <div class="res"><b>Result:</b> lab validated with my tutor; the unauthorised site received no multicast stream (test); 4 documents reused by the team.</div>
+    </div>
+    <div class="fig"><svg viewBox="0 0 300 190" >
+      <defs><marker id="a1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1L8 5L1 9" fill="none" stroke="#1f3864" stroke-width="1.5"/></marker></defs>
+      <rect x="110" y="8" width="80" height="34" rx="5" fill="#e6eef8" stroke="#1f3864"/>
+      <text x="150" y="23" font-size="9" text-anchor="middle" font-weight="600">Radar centre</text>
+      <text x="150" y="35" font-size="7.5" text-anchor="middle">FortiGate</text>
+      <rect x="12" y="140" width="80" height="34" rx="5" fill="#e6eef8" stroke="#1f3864"/>
+      <text x="52" y="155" font-size="9" text-anchor="middle" font-weight="600">Radar base 1</text>
+      <text x="52" y="167" font-size="7.5" text-anchor="middle">FortiGate</text>
+      <rect x="208" y="140" width="80" height="34" rx="5" fill="#e6eef8" stroke="#1f3864"/>
+      <text x="248" y="155" font-size="9" text-anchor="middle" font-weight="600">Radar base 2</text>
+      <text x="248" y="167" font-size="7.5" text-anchor="middle">FortiGate</text>
+      <line x1="130" y1="42" x2="62" y2="140" stroke="#1f3864" stroke-width="2"/>
+      <line x1="170" y1="42" x2="238" y2="140" stroke="#1f3864" stroke-width="2"/>
+      <path d="M118 42 Q 40 70 40 140" fill="none" stroke="#c0504d" stroke-width="1.6" stroke-dasharray="5 3"/>
+      <path d="M182 42 Q 262 70 260 140" fill="none" stroke="#c0504d" stroke-width="1.6" stroke-dasharray="5 3"/>
+      <text x="150" y="98" font-size="8" text-anchor="middle" fill="#1f3864">customer WAN (primary)</text>
+      <text x="150" y="110" font-size="8" text-anchor="middle" fill="#c0504d">SATCOM (failover only)</text>
+      <text x="150" y="126" font-size="7.5" text-anchor="middle" fill="#3b6d11">IPsec + VTI · PIM multicast</text>
+      <text x="150" y="184" font-size="7.5" text-anchor="middle" fill="#44546a">link monitor 800 ms → switch / fall back</text>
+    </svg><div class="cap">Generic diagram: no customer data (confidential project)</div></div>
+  </div>
+
+  <div class="card">
+    <div>
+      <h3>My Network Inventory: a C++ / Qt desktop application (2025)</h3>
+      <div class="meta">Solo project, free topic (ENSIIE) · C++17, Qt 6, Qt Test, Doxygen, Inno Setup</div>
+      <ul>
+        <li><b>Why:</b> back from Thales, I turned my reporting scripts into a real application: which devices are end-of-support, unpatched or hit by a given CVE?</li>
+        <li><b>Built:</b> about 6,300 lines of C++ in a Model-View-Controller design, filters by obsolescence, patch status and CVE, and an interactive network topology.</li>
+      </ul>
+      <div class="res"><b>Result:</b> a Windows installer, Doxygen documentation and Qt Test unit tests.</div>
+      <div class="links-row"><a href="https://github.com/BounamAph/my-network-inventory" target="_blank" rel="noopener">Code on GitHub →</a> · <a href="https://github.com/BounamAph/my-network-inventory/releases/tag/v1.0" target="_blank" rel="noopener">Download v1.0</a></div>
+    </div>
+    <div class="fig"><img src="assets/network-inventory.png" alt="My Network Inventory: firewalls affected by CVE-2024-21762 highlighted in red" loading="lazy"><div class="cap">Filtering on a CVE: affected firewalls turn red</div></div>
+  </div>
+
+  <div class="card">
+    <div>
+      <h3>Infrastructure as code with a blocking CI/CD gate (2026)</h3>
+      <div class="meta">Personal project · Terraform (AWS), Docker, Trivy, GitHub Actions, Python</div>
+      <ul>
+        <li><b>Pipeline:</b> 3 jobs on every pull request: a blocking compliance scan, a detection test, and SARIF results in GitHub Code Scanning.</li>
+        <li><b>Hardened the chain itself:</b> actions pinned to commit hashes after a 2026 supply-chain attack; read-only token by default.</li>
+        <li><b>Vulnerability triage:</b> 8,144 detections → 2,020 unique CVEs → 369 urgent, by real-world exploitation (CISA KEV, EPSS) and exposure.</li>
+      </ul>
+      <div class="res"><b>Result:</b> 17 CIS misconfigurations → 0; a pull request reopening SSH to the Internet is blocked.</div>
+      <div class="links-row"><a href="https://github.com/BounamAph/rbvm-pipeline" target="_blank" rel="noopener">Code on GitHub →</a></div>
+    </div>
+    <div class="fig"><svg viewBox="0 0 300 150" >
+      <defs><marker id="a2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1L8 5L1 9" fill="none" stroke="#1f3864" stroke-width="1.5"/></marker></defs>
+      <rect x="6" y="52" width="70" height="40" rx="5" fill="#e6eef8" stroke="#1f3864"/>
+      <text x="41" y="69" font-size="8.5" text-anchor="middle" font-weight="600">Terraform</text>
+      <text x="41" y="81" font-size="7.5" text-anchor="middle">+ Dockerfile</text>
+      <rect x="100" y="52" width="70" height="40" rx="5" fill="#e6eef8" stroke="#1f3864"/>
+      <text x="135" y="69" font-size="8.5" text-anchor="middle" font-weight="600">Pull request</text>
+      <text x="135" y="81" font-size="7.5" text-anchor="middle">GitHub</text>
+      <rect x="196" y="10" width="98" height="28" rx="5" fill="#fbecec" stroke="#c0504d"/>
+      <text x="245" y="28" font-size="8" text-anchor="middle">1 · blocking scan</text>
+      <rect x="196" y="58" width="98" height="28" rx="5" fill="#eef6ee" stroke="#3b6d11"/>
+      <text x="245" y="76" font-size="8" text-anchor="middle">2 · detection test</text>
+      <rect x="196" y="106" width="98" height="28" rx="5" fill="#e6eef8" stroke="#1f3864"/>
+      <text x="245" y="124" font-size="8" text-anchor="middle">3 · SARIF report</text>
+      <line x1="76" y1="72" x2="98" y2="72" stroke="#1f3864" stroke-width="1.5" marker-end="url(#a2)"/>
+      <line x1="170" y1="66" x2="194" y2="26" stroke="#1f3864" stroke-width="1.2" marker-end="url(#a2)"/>
+      <line x1="170" y1="72" x2="194" y2="72" stroke="#1f3864" stroke-width="1.2" marker-end="url(#a2)"/>
+      <line x1="170" y1="78" x2="194" y2="118" stroke="#1f3864" stroke-width="1.2" marker-end="url(#a2)"/>
+      <text x="88" y="118" font-size="8" text-anchor="middle" fill="#c0504d">merge refused if</text>
+      <text x="88" y="129" font-size="8" text-anchor="middle" fill="#c0504d">a HIGH issue appears</text>
+    </svg></div>
+  </div>
+
+  <div class="card">
+    <div>
+      <h3>Secure campus network for 8 colleges (CSUN, 2026)</h3>
+      <div class="meta">Team of 4, architecture lead · Cisco Packet Tracer: ASA 5506-X, ISR 4331, Catalyst 2960</div>
+      <ul>
+        <li><b>Built:</b> a three-tier network for about 2,568 devices: one VLAN per college, router-on-a-stick, DHCP, dual-homed access, EtherChannel and Rapid PVST+.</li>
+        <li><b>Security in 4 layers:</b> ASA firewall with NAT, inter-VLAN ACLs, port-security, device hardening.</li>
+      </ul>
+      <div class="res"><b>Result:</b> 16 validation tests passed; $142,616, 71% of the $200,000 budget.</div>
+      <div class="links-row"><a href="https://github.com/BounamAph/matadors-campus-network" target="_blank" rel="noopener">Project on GitHub →</a></div>
+    </div>
+    <div class="fig"><svg viewBox="0 0 300 150" >
+      <rect x="110" y="4" width="80" height="22" rx="4" fill="#fbecec" stroke="#c0504d"/>
+      <text x="150" y="19" font-size="8" text-anchor="middle">ASA firewall · NAT</text>
+      <rect x="110" y="36" width="80" height="22" rx="4" fill="#e6eef8" stroke="#1f3864"/>
+      <text x="150" y="51" font-size="8" text-anchor="middle">ISR router · ACLs</text>
+      <rect x="62" y="72" width="70" height="22" rx="4" fill="#e6eef8" stroke="#1f3864"/>
+      <text x="97" y="87" font-size="8" text-anchor="middle">Dist-SW-1 (root)</text>
+      <rect x="168" y="72" width="70" height="22" rx="4" fill="#e6eef8" stroke="#1f3864"/>
+      <text x="203" y="87" font-size="8" text-anchor="middle">Dist-SW-2</text>
+      <line x1="150" y1="26" x2="150" y2="36" stroke="#1f3864" stroke-width="1.4"/>
+      <line x1="140" y1="58" x2="105" y2="72" stroke="#1f3864" stroke-width="1.4"/>
+      <line x1="160" y1="58" x2="195" y2="72" stroke="#1f3864" stroke-width="1.4"/>
+      <line x1="132" y1="81" x2="168" y2="81" stroke="#3b6d11" stroke-width="3"/>
+      <line x1="132" y1="86" x2="168" y2="86" stroke="#3b6d11" stroke-width="3"/>
+      <text x="150" y="102" font-size="7" text-anchor="middle" fill="#3b6d11">EtherChannel</text>
+      <g font-size="7" text-anchor="middle">
+        <rect x="8" y="114" width="30" height="18" rx="3" fill="#f4f7fb" stroke="#8496b0"/><text x="23" y="126">V10</text>
+        <rect x="44" y="114" width="30" height="18" rx="3" fill="#f4f7fb" stroke="#8496b0"/><text x="59" y="126">V20</text>
+        <rect x="80" y="114" width="30" height="18" rx="3" fill="#f4f7fb" stroke="#8496b0"/><text x="95" y="126">V30</text>
+        <rect x="116" y="114" width="30" height="18" rx="3" fill="#f4f7fb" stroke="#8496b0"/><text x="131" y="126">V40</text>
+        <rect x="152" y="114" width="30" height="18" rx="3" fill="#f4f7fb" stroke="#8496b0"/><text x="167" y="126">V50</text>
+        <rect x="188" y="114" width="30" height="18" rx="3" fill="#f4f7fb" stroke="#8496b0"/><text x="203" y="126">V60</text>
+        <rect x="224" y="114" width="30" height="18" rx="3" fill="#f4f7fb" stroke="#8496b0"/><text x="239" y="126">V70</text>
+        <rect x="260" y="114" width="30" height="18" rx="3" fill="#f4f7fb" stroke="#8496b0"/><text x="275" y="126">V80</text>
+      </g>
+      <path d="M97 94 L23 114 M97 94 L95 114 M97 94 L167 114 M97 94 L239 114 M203 94 L59 114 M203 94 L131 114 M203 94 L203 114 M203 94 L275 114" stroke="#8496b0" stroke-width="0.7" stroke-dasharray="3 2" fill="none"/>
+      <text x="150" y="146" font-size="7" text-anchor="middle" fill="#44546a">8 access switches, one VLAN per college, dual-homed</text>
+    </svg></div>
+  </div>
+
+  <div class="card">
+    <div>
+      <h3>Federated, GAN-based intrusion detection (CSUN, 2026)</h3>
+      <div class="meta">Machine Learning course (grade A) · Python, TensorFlow / Keras, scikit-learn · NSL-KDD, CICIDS-2017</div>
+      <ul>
+        <li><b>Reproduced</b> a 2025 paper: an autoencoder + Wasserstein GAN generates synthetic rare attacks to rebalance the training data; 6 classifiers compared.</li>
+        <li><b>My extension:</b> federated learning (FedAvg, 4 non-IID clients), so that sites never share raw traffic.</li>
+        <li><b>Findings:</b> preprocessing mattered more than the model (F1 0.79 → 0.91); the authors' public code differs from the paper.</li>
+      </ul>
+      <div class="res"><b>Result:</b> rare-attack F1 0.08 → 0.37; federated version within 0.4 F1 points of centralised training.</div>
+      <div class="links-row"><a href="https://github.com/BounamAph/fed-ae-wgan-ids" target="_blank" rel="noopener">Code and report on GitHub →</a></div>
+    </div>
+    <div class="fig"><svg viewBox="0 0 300 140" >
+      <defs><marker id="a4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1L8 5L1 9" fill="none" stroke="#1f3864" stroke-width="1.5"/></marker></defs>
+      <rect x="6" y="50" width="70" height="40" rx="5" fill="#f4f7fb" stroke="#8496b0"/>
+      <text x="41" y="67" font-size="8.5" text-anchor="middle" font-weight="600">NSL-KDD</text>
+      <text x="41" y="79" font-size="7.5" text-anchor="middle">imbalanced</text>
+      <rect x="100" y="10" width="86" height="40" rx="5" fill="#e6eef8" stroke="#1f3864"/>
+      <text x="143" y="27" font-size="8.5" text-anchor="middle" font-weight="600">AE + WGAN</text>
+      <text x="143" y="39" font-size="7.5" text-anchor="middle">synthetic rare attacks</text>
+      <rect x="100" y="90" width="86" height="40" rx="5" fill="#e6eef8" stroke="#1f3864"/>
+      <text x="143" y="107" font-size="8.5" text-anchor="middle" font-weight="600">Balanced data</text>
+      <text x="143" y="119" font-size="7.5" text-anchor="middle">real + generated</text>
+      <rect x="210" y="50" width="84" height="40" rx="5" fill="#eef6ee" stroke="#3b6d11"/>
+      <text x="252" y="67" font-size="8.5" text-anchor="middle" font-weight="600">FedAvg · 4 clients</text>
+      <text x="252" y="79" font-size="7.5" text-anchor="middle">6 classifiers</text>
+      <line x1="76" y1="62" x2="98" y2="36" stroke="#1f3864" stroke-width="1.2" marker-end="url(#a4)"/>
+      <line x1="143" y1="50" x2="143" y2="88" stroke="#1f3864" stroke-width="1.2" marker-end="url(#a4)"/>
+      <line x1="76" y1="78" x2="98" y2="104" stroke="#1f3864" stroke-width="1.2" marker-end="url(#a4)"/>
+      <line x1="186" y1="104" x2="208" y2="78" stroke="#1f3864" stroke-width="1.2" marker-end="url(#a4)"/>
+    </svg></div>
+  </div>
+
+  <div class="card">
+    <div>
+      <h3>The Salonism: a production data pipeline (2026)</h3>
+      <div class="meta">My own classical-music platform · GitHub Actions, Python, Supabase (Postgres), React, Vercel</div>
+      <ul>
+        <li><b>Built:</b> a nightly orchestrator that collects concert listings from venue websites, structured data (JSON-LD) and Paris open data, then deduplicates them.</li>
+        <li><b>Monitoring:</b> each run is compared with the last healthy one, to catch sources that silently return fewer rows.</li>
+        <li><b>Security:</b> MFA enforced in the database for the admin team (29 access policies), proven by a before/after test; DNSSEC, SPF, DKIM and DMARC.</li>
+      </ul>
+      <div class="res"><b>Result:</b> 2,200+ concerts, 193 venues and 2,300+ artists online, refreshed every night.</div>
+      <div class="links-row"><a href="https://www.thesalonism.com" target="_blank" rel="noopener">www.thesalonism.com →</a></div>
+    </div>
+    <div class="fig"><svg viewBox="0 0 300 150" >
+      <defs><marker id="a3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1L8 5L1 9" fill="none" stroke="#1f3864" stroke-width="1.5"/></marker></defs>
+      <rect x="6" y="14" width="74" height="26" rx="5" fill="#f4f7fb" stroke="#8496b0"/>
+      <text x="43" y="31" font-size="8" text-anchor="middle">venue sites</text>
+      <rect x="6" y="62" width="74" height="26" rx="5" fill="#f4f7fb" stroke="#8496b0"/>
+      <text x="43" y="79" font-size="8" text-anchor="middle">JSON-LD</text>
+      <rect x="6" y="110" width="74" height="26" rx="5" fill="#f4f7fb" stroke="#8496b0"/>
+      <text x="43" y="127" font-size="8" text-anchor="middle">Paris open data</text>
+      <rect x="106" y="50" width="84" height="50" rx="5" fill="#e6eef8" stroke="#1f3864"/>
+      <text x="148" y="68" font-size="8.5" text-anchor="middle" font-weight="600">Nightly run</text>
+      <text x="148" y="80" font-size="7.5" text-anchor="middle">GitHub Actions</text>
+      <text x="148" y="92" font-size="7.5" text-anchor="middle" fill="#c0504d">alert on silent drop</text>
+      <rect x="216" y="20" width="78" height="40" rx="5" fill="#eef6ee" stroke="#3b6d11"/>
+      <text x="255" y="37" font-size="8.5" text-anchor="middle" font-weight="600">Supabase</text>
+      <text x="255" y="49" font-size="7.5" text-anchor="middle">RLS + MFA (aal2)</text>
+      <rect x="216" y="90" width="78" height="40" rx="5" fill="#eef6ee" stroke="#3b6d11"/>
+      <text x="255" y="107" font-size="8.5" text-anchor="middle" font-weight="600">Website</text>
+      <text x="255" y="119" font-size="7.5" text-anchor="middle">Vercel · DNSSEC</text>
+      <line x1="80" y1="27" x2="104" y2="62" stroke="#1f3864" stroke-width="1.2" marker-end="url(#a3)"/>
+      <line x1="80" y1="75" x2="104" y2="75" stroke="#1f3864" stroke-width="1.2" marker-end="url(#a3)"/>
+      <line x1="80" y1="123" x2="104" y2="88" stroke="#1f3864" stroke-width="1.2" marker-end="url(#a3)"/>
+      <line x1="190" y1="68" x2="214" y2="44" stroke="#1f3864" stroke-width="1.2" marker-end="url(#a3)"/>
+      <line x1="255" y1="60" x2="255" y2="88" stroke="#1f3864" stroke-width="1.2" marker-end="url(#a3)"/>
+    </svg></div>
+  </div>
+
+  <div class="card">
+    <div>
+      <h3>AI agents for a mobile face-recognition app (CSUN, 2026)</h3>
+      <div class="meta">Team of 3, Scrum · Kotlin, Koog (JetBrains agent framework), Gemini, Claude, Gradle, Android</div>
+      <ul>
+        <li><b>My agent:</b> 4 tools: it reads the test cases produced by a teammate's agent and the app code, writes the tests, runs them and fixes itself up to 3 times (prototype).</li>
+        <li><b>Danger detection:</b> a multimodal LLM analyses the camera image and must answer in strict JSON with 5 threat levels.</li>
+      </ul>
+      <div class="res"><b>Result:</b> two cooperating agents, and an LLM feature constrained by a machine-readable output format.</div>
+    </div>
+    <div class="fig"><svg viewBox="0 0 300 140" >
+      <defs><marker id="a5" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M1 1L8 5L1 9" fill="none" stroke="#1f3864" stroke-width="1.5"/></marker></defs>
+      <rect x="6" y="50" width="78" height="40" rx="5" fill="#f4f7fb" stroke="#8496b0"/>
+      <text x="45" y="67" font-size="8.5" text-anchor="middle" font-weight="600">Test-case agent</text>
+      <text x="45" y="79" font-size="7.5" text-anchor="middle">(teammate) · JSON</text>
+      <rect x="108" y="50" width="84" height="40" rx="5" fill="#e6eef8" stroke="#1f3864"/>
+      <text x="150" y="67" font-size="8.5" text-anchor="middle" font-weight="600">My agent</text>
+      <text x="150" y="79" font-size="7.5" text-anchor="middle">Koog · 4 tools</text>
+      <rect x="216" y="50" width="78" height="40" rx="5" fill="#eef6ee" stroke="#3b6d11"/>
+      <text x="255" y="67" font-size="8.5" text-anchor="middle" font-weight="600">Gradle tests</text>
+      <text x="255" y="79" font-size="7.5" text-anchor="middle">pass / fail</text>
+      <line x1="84" y1="70" x2="106" y2="70" stroke="#1f3864" stroke-width="1.2" marker-end="url(#a5)"/>
+      <line x1="192" y1="70" x2="214" y2="70" stroke="#1f3864" stroke-width="1.2" marker-end="url(#a5)"/>
+      <path d="M255 90 Q 255 122 150 122 Q 140 122 150 92" fill="none" stroke="#c0504d" stroke-width="1.3" stroke-dasharray="4 3" marker-end="url(#a5)"/>
+      <text x="205" y="134" font-size="7.5" text-anchor="middle" fill="#c0504d">on failure: fix and retry (max 3)</text>
+    </svg></div>
+  </div>
+</div></section>
+
+<section id="skills"><div class="wrap">
+  <h2>Skills</h2>
+  <div class="skills">
+    <div><h3>Networking</h3><div class="chips"><span class="chip">TCP/IP</span><span class="chip">IPsec / IKEv2</span><span class="chip">VLAN</span><span class="chip">NAT</span><span class="chip">Multicast (PIM)</span><span class="chip">RSTP, EtherChannel</span><span class="chip">OSPF / BGP (coursework)</span><span class="chip">FortiGate</span><span class="chip">Cisco IOS</span><span class="chip">Wireshark</span></div></div>
+    <div><h3>Infrastructure &amp; automation</h3><div class="chips"><span class="chip">Linux</span><span class="chip">Python</span><span class="chip">C++ / Qt (project)</span><span class="chip">Bash</span><span class="chip">Terraform</span><span class="chip">Docker</span><span class="chip">Git, GitHub Actions</span><span class="chip">AI agents (Koog)</span><span class="chip">Claude Code</span></div></div>
+    <div><h3>Security</h3><div class="chips"><span class="chip">Vulnerability management (CVE, CVSS, KEV, EPSS)</span><span class="chip">CIS Benchmarks</span><span class="chip">MFA / access control</span><span class="chip">DNS security (DNSSEC, SPF, DKIM, DMARC)</span><span class="chip">SIEM (Wazuh)</span><span class="chip">ISO 27001 (coursework)</span></div></div>
+    <div><h3>Languages</h3><div class="chips"><span class="chip">French (native)</span><span class="chip">English (C1)</span></div></div>
+  </div>
+</div></section>
+
+<section id="education"><div class="wrap">
+  <h2>Education</h2>
+  <div class="edu">
+    <div class="xp-item"><h3>ENSIIE</h3><div class="when">2023 to 2027 · Évry, France</div><p style="margin:6px 0 0">Master's-level engineering degree, cybersecurity major. Engineering school associated with Université Paris-Saclay and Institut Mines-Télécom.</p></div>
+    <div class="xp-item"><h3>California State University, Northridge</h3><div class="when">Jan to May 2026 · Los Angeles, USA</div><p style="margin:6px 0 0">Exchange semester (Master's level), GPA 3.40/4. Advanced telecommunications and networking, machine learning (A), software engineering.</p></div>
+  </div>
+</div></section>
+
+<section id="contact"><div class="wrap">
+  <h2>Contact</h2>
+  <p>I am available for a 6-month end-of-studies internship from January 2027. The best way to reach me:</p>
+  <div class="btns">
+    <a class="btn primary" id="mail" href="#contact">Email me</a>
+    <a class="btn" href="https://www.linkedin.com/in/bounam-aphayavong" target="_blank" rel="noopener">LinkedIn</a>
+    <a class="btn" href="https://github.com/BounamAph" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</div></section>
+
+<footer><div class="wrap">© 2026 Bounam Aphayavong · Projects developed with the assistance of Claude · Thales diagrams are generic and contain no customer data.</div></footer>
+
+<script>
+  // Email assembled at runtime so that simple scrapers cannot read it from the HTML.
+  (function () {
+    var u = "apgbounam", d = "gmail.com", a = document.getElementById("mail");
+    a.href = "mailto:" + u + "@" + d;
+    a.textContent = u + "@" + d;
+  })();
+</script>
+</body>
+</html>
